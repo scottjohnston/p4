@@ -14,3 +14,25 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*
+ * Route for log viewer
+ */
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+
+/*
+ * Practice route for Debugbar
+ *
+ */
+Route::get('/practice', function() {
+
+    $data = Array('foo' => 'bar');
+    Debugbar::info($data);
+    Debugbar::error('Error!');
+    Debugbar::warning('Watch out…');
+    Debugbar::addMessage('Another message', 'mylabel');
+
+    return 'Practice';
+
+});

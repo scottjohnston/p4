@@ -145,6 +145,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Scotts service providers
+         */
+         Barryvdh\Debugbar\ServiceProvider::class,
+         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+         Collective\Html\HtmlServiceProvider::class,
+
     ],
 
     /*
@@ -194,6 +201,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
+        /*
+         * Scotts facades
+         */
+
+         'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
