@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Http\Request; //needs to go
+use App\Http\Requests;     //test code only
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,24 +13,24 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.welcome');
 });
 
 /********************************************************************
  * Login routes
  *******************************************************************/
 
-Route::get('/sign_in', function() {
-    return 'sign in here';
+Route::get('/login', function() {
+    return 'login here';
 });
 
 // needs to change to a post route
-Route::get('/sign_inController', function() {
-    return 'sign in post here';
-});
+//Route::get('/login', function() {
+//    return 'sign in post process the form here';
+//});
 
 
-Route::get('/sign_out/{user_id}', function($user_id) {
+Route::get('/logout/{user_id}', function($user_id) {
         return 'Here is the user_id of sign out user id is: '.$user_id;
 });
 
@@ -37,23 +38,23 @@ Route::get('/sign_out/{user_id}', function($user_id) {
  * Create user routes
  ******************************************************************/
 
-Route::get('/create_user', function() {
-    return 'create_user in here';
+Route::get('/register', function() {
+    return view('layouts.register');
 });
 
 //needst to become a post *
-Route::get('/create_userController', function() {
-    return 'create_userController in here';
-});
+//Route::get('/register', function() {
+//    return 'register user process the form in here';
+//});
 
-Route::get('/password_reset', function() {
-    return 'password_reset in here';
+Route::get('/password/reset', function() {
+    return 'password reset in here';
 });
 
 // needs to be a post *
-Route::get('/password_resetController', function() {
-    return 'password_resetController in here';
-});
+//Route::get('/password/reset', function() {
+//    return 'password process form in here';
+//});
 
 
 /*****************************************************************
@@ -62,27 +63,24 @@ Route::get('/password_resetController', function() {
  *****************************************************************/
 
 //needs to change to a post
-Route::get('/create_taskController', function() {
-    return 'create_taskController in here';
+Route::get('/task/create', function(Request $request) {
+    return view('layouts.createTasks')->with('request', $request);
 });
 
-Route::get('/delete_task/{task_id}', function($task_id) {
+Route::get('/task/delete/{task_id}', function($task_id) {
         return 'Delete task_id is: '.$task_id;
 });
 
-Route::get('/update_task/{task_id}', function($task_id) {
+Route::get('/task/update/{task_id}', function($task_id) {
         return 'update task_id is: '.$task_id;
 });
 
 
-Route::get('Update_date_due/{date_due}', function($date_due) {
+Route::get('/task/update/due/{date_due}', function($date_due) {
         return 'update date_due is: '.$date_due;
 });
 
-//calendar update needs more thought
-Route::get('/calendar/query/{user_id}', function($date_due) {
-        return 'update Calendar user_id is: '.$date_due;
-});
+
 
 
 
