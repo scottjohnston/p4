@@ -14,7 +14,7 @@
 
       <title>
          {{-- 'title of the site' --}}
-         @yield('title','Holiday somthing')
+         @yield('title','Holiday something')
       </title>
 
 
@@ -45,10 +45,16 @@
                   {{-- main nav links --}}
                   <div class="collapse navbar-collapse" id="navbar-collapse">
                      <ul class="list-inline nav nav-tabs nav-justified ">
-                        <li><a href="/" data-tog="tooltip" title="Holiday escapes"> Holiday escapes</a></li>
-                        <li><a href="/task/create" data-tog="tooltip" title="Create escapes">Create escapes</a></li>
-                        <li><a href="#" data-tog="tooltip" title="#">#</a></li>
-                        <li><a href="#" data-tog="tooltip" title="#">#</a></li>
+                         @if(Auth::check())
+                           <li><a href="/task/create" data-tog="tooltip" title="Create escapes">Create escapes</a></li>
+                           <li><a href="#" data-tog="tooltip" title="#">#</a></li>
+                           <li><a href="#" data-tog="tooltip" title="#">#</a></li>
+                           <li><a href="/logout" data-tog="tooltip" title="Logout">Log out</a></li>
+                        @else
+                           <li><a href="/task/create" data-tog="tooltip" title="Create escapes">Create escapes</a></li>
+                           <li><a href="/" data-tog="tooltip" title="log in">Log in</a></li>
+                           <li><a href="/register" data-tog="tooltip" title="register">register</a></li>
+                        @endif
                      </ul>
                   </div>
                </nav>

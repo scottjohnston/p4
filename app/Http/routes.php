@@ -12,49 +12,30 @@ use App\Http\Requests;     //test code only
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.welcome');
-});
+//Route::get('/', 'welcomeController@index');
 
 /********************************************************************
  * Login routes
  *******************************************************************/
 
-Route::get('/login', function() {
-    return 'login here';
+Route::get('/home', function() {
+    return 'home here fuck hey';
 });
 
-// needs to change to a post route
-//Route::get('/login', function() {
-//    return 'sign in post process the form here';
-//});
+// Show login form
+Route::get('/', 'Auth\AuthController@getLogin');
 
+// Process login form
+Route::post('/login', 'Auth\AuthController@postLogin');
 
-Route::get('/logout/{user_id}', function($user_id) {
-        return 'Here is the user_id of sign out user id is: '.$user_id;
-});
+// Process logout
+Route::get('/logout', 'Auth\AuthController@getLogout');
 
-/******************************************************************
- * Create user routes
- ******************************************************************/
+// Show registration form
+Route::get('/register', 'Auth\AuthController@getRegister');
 
-Route::get('/register', function() {
-    return view('layouts.register');
-});
-
-//needst to become a post *
-//Route::get('/register', function() {
-//    return 'register user process the form in here';
-//});
-
-Route::get('/password/reset', function() {
-    return 'password reset in here';
-});
-
-// needs to be a post *
-//Route::get('/password/reset', function() {
-//    return 'password process form in here';
-//});
+//Process registration form
+Route::post('/register', 'Auth\AuthController@postRegister');
 
 
 /*****************************************************************
@@ -63,24 +44,28 @@ Route::get('/password/reset', function() {
  *****************************************************************/
 
 //needs to change to a post
-Route::get('/task/create', function(Request $request) {
-    return view('layouts.createTasks')->with('request', $request);
+Route::group (['middleware' => 'auth'], function(){
+   
+   Route::get('/task/create', 'taskController@getCreate');
+
+   /*function(Request $request) {
+       return view('layouts.createTasks')->with('request', $request);
+   });
+   */
+   Route::get('/task/delete/{task_id}', function($task_id) {
+           return 'Delete task_id is: '.$task_id;
+   });
+
+   Route::get('/task/update/{task_id}', function($task_id) {
+           return 'update task_id is: '.$task_id;
+   });
+
+
+   Route::get('/task/update/due/{date_due}', function($date_due) {
+           return 'update date_due is: '.$date_due;
+   });
+
 });
-
-Route::get('/task/delete/{task_id}', function($task_id) {
-        return 'Delete task_id is: '.$task_id;
-});
-
-Route::get('/task/update/{task_id}', function($task_id) {
-        return 'update task_id is: '.$task_id;
-});
-
-
-Route::get('/task/update/due/{date_due}', function($date_due) {
-        return 'update date_due is: '.$date_due;
-});
-
-
 
 
 
