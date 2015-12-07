@@ -15,11 +15,12 @@ class CreateHolidaysTable extends Migration
         Schema::create('holidays', function(Blueprint $table) {
            $table->increments('id');
            $table->timestamps();
-           $table->integer('user_id')->unsigned();//FK
+
            $table->string('due_date');
            $table->string('name');
            $table->string('description');
 
+           $table->integer('user_id')->unsigned();//FK
            $table->foreign('user_id')->references('id')->on('users');
         });
     }

@@ -12,7 +12,7 @@ use App\Http\Requests;     //test code only
 |
 */
 
-//Route::get('/', 'welcomeController@index');
+Route::controller('/practice','PracticeController');
 
 /********************************************************************
  * Login routes
@@ -37,34 +37,63 @@ Route::get('/register', 'Auth\AuthController@getRegister');
 //Process registration form
 Route::post('/register', 'Auth\AuthController@postRegister');
 
+Route::get('/confirm-login-worked', function() {
 
-/*****************************************************************
- *Routes for working with tasks
- *
- *****************************************************************/
+    # You may access the authenticated user via the Auth facade
+    $user = Auth::user();
+
+    if($user) {
+        echo 'You are logged in, hi ' .$user->name;
+        dump($user->toArray());
+    } else {
+        echo 'You are not logged in.';
+    }
+
+    return;
+
+});
+
+
+
+
+
+
 
 //needs to change to a post
 Route::group (['middleware' => 'auth'], function(){
-   
-   Route::get('/task/create', 'taskController@getCreate');
 
-   /*function(Request $request) {
-       return view('layouts.createTasks')->with('request', $request);
-   });
-   */
-   Route::get('/task/delete/{task_id}', function($task_id) {
-           return 'Delete task_id is: '.$task_id;
-   });
+/*****************************************************************
+ *Routes for working with escapes
+ *
+ *****************************************************************/
 
-   Route::get('/task/update/{task_id}', function($task_id) {
-           return 'update task_id is: '.$task_id;
-   });
+   Route::get('/escape/create', 'EscapeController@getCreate');
+
+   Route::post('/escape/create', 'EscapeController@postCreate');
+
+   Route::get('/escape/update/{id?}', 'EscapeController@getUpdate');
+
+   Route::post('/escape/update', 'EscapeController@postUpdate');
 
 
-   Route::get('/task/update/due/{date_due}', function($date_due) {
+
+   Route::get('/escape/delete/{id}', 'EscapeController@getDelete');
+
+
+   Route::get('/escape/update/due/{date_due}', function($date_due) {
            return 'update date_due is: '.$date_due;
    });
 
+
+
+
+
+
+   /**************************************************************
+      Routes for working with holidays
+
+   ************************************************************/
+   Route::get('/holiday/create', 'HolidayController@getCreate');
 });
 
 
@@ -124,7 +153,7 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 /*
  * Practice route for Debugbar
  *
- */
+
 Route::get('/practice', function() {
 
     $data = Array('foo' => 'bar');
@@ -139,4 +168,4 @@ Route::get('/practice', function() {
 
 
 
-});
+});*/

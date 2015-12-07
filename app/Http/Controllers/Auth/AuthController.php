@@ -25,7 +25,7 @@ class AuthController extends Controller
 
 
     # Where should the user be redirected to if their login succeeds?
-   protected $redirectPath = '/task/create';
+   protected $redirectPath = '/escape/create';
 
    # Where should the user be redirected to if their login fails?
    protected $loginPath = '/';

@@ -5,7 +5,7 @@
 {{-- 'Project 4 Scott Johnston dwa15-' --}}
 
 @section('title')
-   Holiday Escapes Crete Escape
+   Holiday holidays Create holiday
 @stop
 
 
@@ -13,14 +13,14 @@
 
             <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
-                  <h3>Create a New escape</h3>
+                  <h3>Create a New holiday</h3>
 
 
-                  {!! Form::open( array ('url' => '/task/create', 'method' => 'get')) !!}
+                  {!! Form::open( array ('url' => '/holidays/create', 'method' => 'get')) !!}
 
-                  {!! Form::label('taskName', 'task Name') !!}
+                  {!! Form::label('holidaysName', 'holidays Name') !!}
 
-                  {!! Form::text('taskName', 'Task Name', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
+                  {!! Form::text('holidaysName', 'holidays Name', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
                </div>
             </div>
 
@@ -36,7 +36,7 @@
             <br>
             <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
-                  {!! Form::submit('Create new task', $attributes = array ('class' => 'btn btn-primary')) !!}
+                  {!! Form::submit('Create new holidays', $attributes = array ('class' => 'btn btn-primary')) !!}
 
                   {!! Form::close() !!}
                </div>
@@ -46,11 +46,11 @@
 
             <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
-                  <h4>List of Tasks here </h4>
+                  <h4>List of holidays here </h4>
 
-                     @if(isset($request))
-                        {{$request -> taskName}} <br>
-                        {{$request -> description}}
+                     @if(isset($holidays))
+                        {{ dump($holidays->toArray()) }} <br>
+
                      @endif
 
                </div>

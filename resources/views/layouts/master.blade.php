@@ -46,12 +46,12 @@
                   <div class="collapse navbar-collapse" id="navbar-collapse">
                      <ul class="list-inline nav nav-tabs nav-justified ">
                          @if(Auth::check())
-                           <li><a href="/task/create" data-tog="tooltip" title="Create escapes">Create escapes</a></li>
+                           <li><a href="/escape/create" data-tog="tooltip" title="Create escapes">Create escapes</a></li>
                            <li><a href="#" data-tog="tooltip" title="#">#</a></li>
                            <li><a href="#" data-tog="tooltip" title="#">#</a></li>
                            <li><a href="/logout" data-tog="tooltip" title="Logout">Log out</a></li>
                         @else
-                           <li><a href="/task/create" data-tog="tooltip" title="Create escapes">Create escapes</a></li>
+                           <li><a href="/escape/create" data-tog="tooltip" title="Create escapes">Create escapes</a></li>
                            <li><a href="/" data-tog="tooltip" title="log in">Log in</a></li>
                            <li><a href="/register" data-tog="tooltip" title="register">register</a></li>
                         @endif
@@ -80,6 +80,7 @@
 
 
       {{-- Jquery for the tool tip --}}
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
       <script>
