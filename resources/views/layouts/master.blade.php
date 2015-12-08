@@ -49,7 +49,7 @@
                            <li><a href="/escape/create" data-tog="tooltip" title="Create escapes">Create escapes</a></li>
                            <li><a href="#" data-tog="tooltip" title="#">#</a></li>
                            <li><a href="#" data-tog="tooltip" title="#">#</a></li>
-                           <li><a href="/logout" data-tog="tooltip" title="Logout">Log out</a></li>
+                           <li><a href="/logout" data-tog="tooltip" title="Logout">Log out {{ $user->name }}</a></li>
                         @else
                            <li><a href="/escape/create" data-tog="tooltip" title="Create escapes">Create escapes</a></li>
                            <li><a href="/" data-tog="tooltip" title="log in">Log in</a></li>

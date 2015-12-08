@@ -80,9 +80,7 @@ Route::group (['middleware' => 'auth'], function(){
    Route::get('/escape/delete/{id}', 'EscapeController@getDelete');
 
 
-   Route::get('/escape/update/due/{date_due}', function($date_due) {
-           return 'update date_due is: '.$date_due;
-   });
+
 
 
 
