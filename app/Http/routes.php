@@ -1,6 +1,5 @@
 <?php
-use Illuminate\Http\Request; //needs to go
-use App\Http\Requests;     //test code only
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,7 +11,7 @@ use App\Http\Requests;     //test code only
 |
 */
 
-Route::controller('/practice','PracticeController');
+
 
 /********************************************************************
  * Login routes
@@ -83,15 +82,14 @@ Route::group (['middleware' => 'auth'], function(){
 
 
 
-
-
-
-
    /**************************************************************
       Routes for working with holidays
 
    ************************************************************/
    Route::get('/holiday/create', 'HolidayController@getCreate');
+
+   Route::post('/holiday/create', 'HolidayController@postCreate');
+
 });
 
 
