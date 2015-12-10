@@ -19,6 +19,7 @@
                   {!! Form::open( array ('url' => '/holiday/create', 'method' => 'POST')) !!}
 
                   {!! Form::label('name', 'holidays Name') !!}
+                  {!! Form::hidden('user_id', $user->id ) !!}
 
                   {!! Form::text('name', 'holidays Name', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
                </div>
@@ -73,6 +74,7 @@
 
                            <br>
                            {!! Form::open( array ('url' => "/holiday/update/{$holiday['id']}", 'method' => 'GET')) !!}
+
                            {!! Form::hidden('id', $holiday['id']) !!}
                            {{ $holiday['name'] }}  {{ $holiday['id'] }}
                            {!! Form::submit('Update holiday', $attributes = array ('class' => 'btn btn-primary')) !!}
@@ -90,6 +92,7 @@
             <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
                      {!! isset($user) ? dump($user) : 'request should be here' !!}
+                     {!! isset($holidays) ? dump($holidays) : 'request should be here' !!}
                   </div>
             </div>
 

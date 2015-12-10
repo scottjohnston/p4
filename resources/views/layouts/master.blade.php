@@ -47,7 +47,7 @@
                      <ul class="list-inline nav nav-tabs nav-justified ">
                          @if(Auth::check())
                            <li><a href="/escape/create" data-tog="tooltip" title="Create escapes">Create escapes</a></li>
-                           <li><a href="#" data-tog="tooltip" title="#">#</a></li>
+                           <li><a href="/holiday/create" data-tog="tooltip" title="create holiday">Create holiday</a></li>
                            <li><a href="#" data-tog="tooltip" title="#">#</a></li>
                            <li><a href="/logout" data-tog="tooltip" title="Logout">Log out {{ $user->name }}</a></li>
                         @else
