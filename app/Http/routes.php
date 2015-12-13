@@ -74,8 +74,6 @@ Route::group (['middleware' => 'auth'], function(){
 
    Route::post('/escape/update', 'EscapeController@postUpdate');
 
-
-
    Route::get('/escape/delete/{id}', 'EscapeController@getDelete');
 
 
@@ -89,6 +87,14 @@ Route::group (['middleware' => 'auth'], function(){
    Route::get('/holiday/create', 'HolidayController@getCreate');
 
    Route::post('/holiday/create', 'HolidayController@postCreate');
+
+   Route::post('/holiday/delete', 'HolidayController@postDelete');
+
+   Route::post('/holiday/update', 'HolidayController@postUpdate');
+
+   /**************adding escapes to holidys*******************/
+
+   Route::post('/holiday/addescape', 'EscapeController@postAddEscape');
 
 });
 

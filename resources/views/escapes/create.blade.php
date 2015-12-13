@@ -10,13 +10,31 @@
 
 
 @section ('content')
+            <div class="row">
+               <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
+                  {!! isset($escapes) ? dump($escapes) : 'holiday should be here' !!}
+                  <h3>Add escapes to this holiday</h3>
+                  @if(isset($holidayToUpdate))
+                     @foreach($holidayToUpdate as $hol)
+                        {{ $hol->name }} <br>
+                        {{ $hol->description }}<br>
+                        {{ $hol->id }}
+                     @endforeach
+                  @endif
+
+               </div>
+            </div>
 
             <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
-                  <h3>Create a New escape</h3>
+                  <h3>Add Escape</h3>
 
 
                   {!! Form::open( array ('url' => '/escape/create', 'method' => 'POST')) !!}
+
+                  @if(isset($holidayToUpdate))
+                     {!! Form::hidden('holiday_id', $holidayToUpdate['0']['id'] ) !!}
+                  @endif
 
                   {!! Form::label('name', 'escapes Name') !!}
 
@@ -89,7 +107,7 @@
             </div>
             <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
-                     {!! isset($request) ? dump($request) : 'request should be here' !!}
+
                   </div>
             </div>
 

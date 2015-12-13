@@ -9,15 +9,24 @@ use App\Http\Controllers\Controller;
 
 class EscapeController extends Controller
 {
-    public function getCreate(Request $request)
+    public function postAddEscape(Request $request)
     {
+        $holidayToUpdate = \App\Holiday::where('id', '=', $request->id)
+                                 ->get();
+
+
+
         $escapes = \App\Escape::all();
-        return view('escapes.create')->with('escapes', $escapes->toArray());
+        return view('escapes.create')
+               ->with('holidayToUpdate', $holidayToUpdate)
+               ->with('escapes', $escapes->toArray())
+               ->with('request', $request);
     }
 
 
     public function postCreate(Request $request)
     {
+       $holiday = \App\Holiday::find('10');//->toArray();//::where('id', '=', $request->holiday_id)->get();
 
       //create a new escape in the database
       $escape = new \App\Escape();
@@ -28,9 +37,15 @@ class EscapeController extends Controller
 
       $escape->save();
 
+      $escapes = \App\Escape::where('holiday_id', '=', '16');//at first glance this works
 
-      $escapes = \App\Escape::all();
-      return view('escapes.create')->with('escapes', $escapes->toArray());
+      $escape->holidays()->sync(['16']);//this is the go
+      //$holiday->escapes()->sync(['16']);
+
+      $all_escapes = \App\Escape::with('holidays')->where('id', '=', '10')->get();//where('holiday_id', '=', '10');
+
+      return view('escapes.create')->with('escapes', $all_escapes->toArray());//this works ->pluck('id')
+                                    //->with('holiday', $all_escapes);
     }
 
 

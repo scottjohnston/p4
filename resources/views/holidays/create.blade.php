@@ -73,16 +73,21 @@
                          @foreach($holidays as $holiday)
 
                            <br>
-                           {!! Form::open( array ('url' => "/holiday/update/{$holiday['id']}", 'method' => 'GET')) !!}
+                           {!! Form::open( array ('url' => "/holiday/update", 'method' => 'POST')) !!}
 
-                           {!! Form::hidden('id', $holiday['id']) !!}
+                           {!! Form::hidden('holiday_id', $holiday['id']) !!}
                            {{ $holiday['name'] }}  {{ $holiday['id'] }}
                            {!! Form::submit('Update holiday', $attributes = array ('class' => 'btn btn-primary')) !!}
                            {!! Form::close() !!}
                            <br>
-                           {!! Form::open( array ('url' => "/holiday/delete/{$holiday['id']}", 'method' => 'GET')) !!}
+                           {!! Form::open( array ('url' => "/holiday/delete", 'method' => 'POST')) !!}
                            {!! Form::hidden('id', $holiday['id']) !!}
                            {!! Form::submit('Delete holiday', $attributes = array ('class' => 'btn btn-primary')) !!}
+                           {!! Form::close() !!}
+                           <br>
+                           {!! Form::open( array ('url' => "/holiday/addescape", 'method' => 'POST')) !!}
+                           {!! Form::hidden('id', $holiday['id']) !!}
+                           {!! Form::submit('Add Escapes', $attributes = array ('class' => 'btn btn-primary')) !!}
                            {!! Form::close() !!}
                         @endforeach
                     @endif
@@ -93,6 +98,7 @@
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
                      {!! isset($user) ? dump($user) : 'request should be here' !!}
                      {!! isset($holidays) ? dump($holidays) : 'request should be here' !!}
+                     {!! isset($holidayToDelete) ? dump($holidayToDelete) : '$holidayToDelete' !!}
                   </div>
             </div>
 
