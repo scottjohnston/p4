@@ -44,36 +44,47 @@ class HolidayController extends Controller
 
    public function postDelete(Request $request)
    {
-      $logged_in_user = \Auth::user();
-      $holiday = new \App\Holiday();
+      $logged_in_user = \Auth::user();//find the user that is loged in
 
-      $holidayToDelete = $holiday->find($request->id);
+      $holiday_mod = \App\Holiday::find($request->id);
 
-      if(isset($holidayToDelete))
-      {
-         $holidayToDelete->delete(); //this works
+      //$userToDetatch = \App\User::find($logged_in_user->id);
 
-         $holidays = \App\Holiday::where('user_id', '=', $logged_in_user->id)->get();
+      $holidayToDelete = \App\Holiday::with('escapes')
+                         ->where('id', '=', $request->id)->get();
 
-         return back()
-                   ->with('holidays', $holidays->toArray())
-                   ->with('user', $logged_in_user)
-                   ->with('holidayToDelete', $holidayToDelete->toArray());
-      }
-      else
-      {
-         return back();
-      }
+
+      $holiday_mod->escapes()->sync([]);
+
+      $holiday_mod->delete();
+
+
+      return view('holidays.deleted')->with('holiday', $holiday_mod);
    }
+
+
+
+    public function postUpdateForm(Request $request)
+    {
+      $holiday = \App\Holiday::find($request->holiday_id);
+
+      return view('holidays.update')->with('holiday', $holiday);
+    }
 
 
 
    public function postUpdate(Request $request)
    {
+            $holiday_to_update = \App\Holiday::where('id', '=', $request->id)
+               ->update([
+               'name'=>$request->name,
+               'description'=>$request->description,
+               ]);
 
+            $holiday = \App\Holiday::find($request->id);
 
       return view('holidays.update')
-               ->with('holiday', $request);
+               ->with('holiday', $holiday);
    }
 
 

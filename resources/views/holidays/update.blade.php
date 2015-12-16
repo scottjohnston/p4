@@ -15,20 +15,20 @@
    <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
       <h4>holiday to Update</h4>
 
+
          @if(isset($holiday))
 
-            {!! Form::open( array ('url' => "/holiday/update", 'method' => 'POST')) !!}
-            {!! Form::text('id', $holiday[0]['id']) !!}
+            {!! Form::open( array ('url' => "/holiday/update/send", 'method' => 'POST')) !!}
+            {!! Form::text('id', $holiday['id']) !!}
 
             <br>
-               {!! Form::label('name', $holiday[0]['name']) !!}
+               {!! Form::label('name', $holiday['name']) !!}
 
-               {!! Form::text('name', $holiday[0]['name'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
+               {!! Form::text('name', $holiday['name'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
             <br>
-               {!! Form::label('description', $holiday[0]['description']) !!}
+               {!! Form::label('description', $holiday['description']) !!}
 
-               {!! Form::text('description', $holiday[0]['description'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
-
+               {!! Form::text('description', $holiday['description'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
 
 
             <br>
@@ -37,10 +37,10 @@
                {!! Form::close() !!}
             <br>
 
-            {{ dump($holiday)}}
+
          @endif
 
-{!! isset($holiday) ? dump($holiday) : 'request should be here' !!}
+{!! isset($holiday1) ? dump($holiday1) : 'omg where did it go should be here' !!}
    </div>
 </div>
 

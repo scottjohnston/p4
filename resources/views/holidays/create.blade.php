@@ -69,7 +69,6 @@
                   <h4>List of holidays here </h4>
 
                      @if(isset($holidays))
-
                          @foreach($holidays as $holiday)
 
                            <br>

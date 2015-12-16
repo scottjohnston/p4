@@ -43,9 +43,9 @@
                {!! Form::close() !!}
             <br>
 
-            {{ dump($escape)}}
-         @endif
 
+         @endif
+         {!! isset($request) ? dump($request) : 'omg should be here' !!}
    </div>
 </div>
 

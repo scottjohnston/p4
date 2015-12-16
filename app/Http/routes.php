@@ -36,65 +36,55 @@ Route::get('/register', 'Auth\AuthController@getRegister');
 //Process registration form
 Route::post('/register', 'Auth\AuthController@postRegister');
 
-Route::get('/confirm-login-worked', function() {
-
-    # You may access the authenticated user via the Auth facade
-    $user = Auth::user();
-
-    if($user) {
-        echo 'You are logged in, hi ' .$user->name;
-        dump($user->toArray());
-    } else {
-        echo 'You are not logged in.';
-    }
-
-    return;
-
-});
 
 
 
 
-
-
-
-//needs to change to a post
+//routes that need authentication to access
 Route::group (['middleware' => 'auth'], function(){
+
+   /**************************************************************
+      Routes for working with holidays
+   ************************************************************/
+
+   //on login you are sent to holiday create
+   Route::get('/holiday/create', 'HolidayController@getCreate');
+
+   //send data for a new holiday to be created in the database
+   Route::post('/holiday/create', 'HolidayController@postCreate');
+
+   //deletes a holiday and its escapes from the database
+   Route::post('/holiday/delete', 'HolidayController@postDelete');
+
+   //sends the user to the update holiday form
+   Route::post('/holiday/update', 'HolidayController@postUpdateForm');
+
+   //sends the changed data to the database
+   Route::post('/holiday/update/send', 'HolidayController@postUpdate');
+
+   /***************************************************************
+      add escapes to the holidays
+   ****************************************************************/
+
+   //loads the form for adding an escape to a holiday
+   Route::post('/holiday/addescape', 'EscapeController@postAddEscape');
+
+   //creates a new escape and adds it to a holiday
+   Route::post('/escape/create', 'EscapeController@postCreate');
+
 
 /*****************************************************************
  *Routes for working with escapes
  *
  *****************************************************************/
 
-   Route::get('/escape/create', 'EscapeController@getCreate');
-
-   Route::post('/escape/create', 'EscapeController@postCreate');
-
+   //
    Route::get('/escape/update/{id?}', 'EscapeController@getUpdate');
 
    Route::post('/escape/update', 'EscapeController@postUpdate');
 
-   Route::get('/escape/delete/{id}', 'EscapeController@getDelete');
+   Route::post('/escape/delete', 'EscapeController@postDelete');
 
-
-
-
-
-   /**************************************************************
-      Routes for working with holidays
-
-   ************************************************************/
-   Route::get('/holiday/create', 'HolidayController@getCreate');
-
-   Route::post('/holiday/create', 'HolidayController@postCreate');
-
-   Route::post('/holiday/delete', 'HolidayController@postDelete');
-
-   Route::post('/holiday/update', 'HolidayController@postUpdate');
-
-   /**************adding escapes to holidys*******************/
-
-   Route::post('/holiday/addescape', 'EscapeController@postAddEscape');
 
 });
 

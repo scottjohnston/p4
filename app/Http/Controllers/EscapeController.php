@@ -9,24 +9,25 @@ use App\Http\Controllers\Controller;
 
 class EscapeController extends Controller
 {
+
+   /*
+   *
+   *
+   *
+   */
     public function postAddEscape(Request $request)
     {
-        $holidayToUpdate = \App\Holiday::where('id', '=', $request->id)
-                                 ->get();
+        $holidayToUpdate = \App\Holiday::with('escapes')
+                           ->where('id', '=', $request->id)->get();
 
-
-
-        $escapes = \App\Escape::all();
         return view('escapes.create')
-               ->with('holidayToUpdate', $holidayToUpdate)
-               ->with('escapes', $escapes->toArray())
-               ->with('request', $request);
+               ->with('holidayToUpdate', $holidayToUpdate);
     }
 
 
     public function postCreate(Request $request)
     {
-       $holiday = \App\Holiday::find('10');//->toArray();//::where('id', '=', $request->holiday_id)->get();
+       $holiday = \App\Holiday::find($request->id);//->toArray();//::where('id', '=', $request->holiday_id)->get();
 
       //create a new escape in the database
       $escape = new \App\Escape();
@@ -37,16 +38,26 @@ class EscapeController extends Controller
 
       $escape->save();
 
-      $escapes = \App\Escape::where('holiday_id', '=', '16');//at first glance this works
+      $escapes = \App\Escape::where('id', '=', $request->holiday_id);//at first glance this works
 
-      $escape->holidays()->sync(['16']);//this is the go
+      $escape->holidays()->sync([$request->holiday_id]);//this is the go
       //$holiday->escapes()->sync(['16']);
-
-      $all_escapes = \App\Escape::with('holidays')->where('id', '=', '10')->get();//where('holiday_id', '=', '10');
-
-      return view('escapes.create')->with('escapes', $all_escapes->toArray());//this works ->pluck('id')
+      //$all_escapes = \App\Escape::where('id', '=', '1')->get();//where('holiday_id', '=', '10');
+      //return back()->with('request_id', $request->holiday_id);//this works ->pluck('id')
                                     //->with('holiday', $all_escapes);
+
+      $holidayToUpdate = \App\Holiday::with('escapes')
+                         ->where('id', '=', $request->holiday_id)->get();
+
+      return view('escapes.create')
+             ->with('holidayToUpdate', $holidayToUpdate)
+             ->with('request', $request);
     }
+
+
+
+
+
 
 
     public function getUpdate($id)
@@ -69,21 +80,45 @@ class EscapeController extends Controller
          'cost'=>$request->cost
          ]);
 
-      $escapes = \App\Escape::all();
+      $escapes = \App\Escape::where('id', '=', $request->id)->get();
 
-      return view('escapes.create')->with('escapes', $escapes->toArray());
+      return view('escapes.update')->with('escape', $escapes);
     }
 
 
-    public function getDelete($id)
+    /****************************************
+      Delete escape
+      ***************************************/
+
+    public function postDelete(Request $request)
     {
-      $escapes = new \App\Escape();
-      $escapeToDelete = $escapes->find($id);
+      $holiday = \App\Holiday::find($request->holiday_id);
+      //$escapes = new \App\Escape();
+      $escapeToDelete = \App\Escape::find($request->id);
+
+      $holiday->escapes()->detach($request->id);
       $escapeToDelete->delete();
 
-      $escapes = \App\Escape::all();
+      $holidayWithEscapes = \App\Holiday::with('escapes')
+                          ->where('id', '=', $request->holiday_id)->get();
 
-      return view('escapes.create')->with('escapes', $escapes->toArray());
+      return view('escapes.create')
+             ->with('holidayToUpdate', $holidayWithEscapes);
    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

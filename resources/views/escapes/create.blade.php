@@ -12,13 +12,19 @@
 @section ('content')
             <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
-                  {!! isset($escapes) ? dump($escapes) : 'holiday should be here' !!}
+                  {!! isset($request_id) ? dump($request_id) : '$request_id should be here' !!}
                   <h3>Add escapes to this holiday</h3>
                   @if(isset($holidayToUpdate))
+
+
                      @foreach($holidayToUpdate as $hol)
-                        {{ $hol->name }} <br>
-                        {{ $hol->description }}<br>
-                        {{ $hol->id }}
+                           {{ $hol->name }}<br>
+                           {{ $hol->id }}<br>
+                        @foreach($hol->escapes as $esc)
+                           {{ $esc->name}}<br>
+                        @endforeach
+
+
                      @endforeach
                   @endif
 
@@ -28,13 +34,13 @@
             <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
                   <h3>Add Escape</h3>
+               @if(isset($holidayToUpdate))
 
+                  @foreach($holidayToUpdate as $hols)
 
                   {!! Form::open( array ('url' => '/escape/create', 'method' => 'POST')) !!}
 
-                  @if(isset($holidayToUpdate))
-                     {!! Form::hidden('holiday_id', $holidayToUpdate['0']['id'] ) !!}
-                  @endif
+                  {!! Form::hidden('holiday_id', $hol->id ) !!}
 
                   {!! Form::label('name', 'escapes Name') !!}
 
@@ -85,21 +91,23 @@
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
                   <h4>List of escapes here </h4>
 
-                     @if(isset($escapes))
 
-                         @foreach($escapes as $escape)
+                           @foreach($hols->escapes as $escape)
 
-                           <br>
-                           {!! Form::open( array ('url' => "/escape/update/{$escape['id']}", 'method' => 'GET')) !!}
-                           {!! Form::hidden('id', $escape['id']) !!}
-                           {{ $escape['name'] }}  {{ $escape['id'] }}
-                           {!! Form::submit('Update Escape', $attributes = array ('class' => 'btn btn-primary')) !!}
-                           {!! Form::close() !!}
-                           <br>
-                           {!! Form::open( array ('url' => "/escape/delete/{$escape['id']}", 'method' => 'GET')) !!}
-                           {!! Form::hidden('id', $escape['id']) !!}
-                           {!! Form::submit('Delete Escape', $attributes = array ('class' => 'btn btn-primary')) !!}
-                           {!! Form::close() !!}
+                              <br>
+                              {!! Form::open( array ('url' => "/escape/update/{$escape['id']}", 'method' => 'GET')) !!}
+                              {!! Form::hidden('id', $escape['id']) !!}
+                              {{ $escape['name'] }}  {{ $escape['id'] }}
+                              {!! Form::submit('Update Escape', $attributes = array ('class' => 'btn btn-primary')) !!}
+                              {!! Form::close() !!}
+                              <br>
+                              {!! Form::open( array ('url' => "/escape/delete", 'method' => 'POST')) !!}
+                              {!! Form::hidden('holiday_id', $hol->id ) !!}
+                              {!! Form::hidden('id', $escape['id']) !!}
+                              {!! Form::submit('Delete Escape', $attributes = array ('class' => 'btn btn-primary')) !!}
+                              {!! Form::close() !!}
+
+                           @endforeach
                         @endforeach
                     @endif
 
