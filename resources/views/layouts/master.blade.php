@@ -46,11 +46,9 @@
                   <div class="collapse navbar-collapse" id="navbar-collapse">
                      <ul class="list-inline nav nav-tabs nav-justified ">
                          @if(Auth::check())
-                           <li><a href="/holiday/create" data-tog="tooltip" title="create holiday">Create holiday</a></li>
-
+                           <li><a href="/holiday/create" data-tog="tooltip" title="create holiday">Create and update holiday</a></li>
                            <li><a href="/logout" data-tog="tooltip" title="Logout">Log out {{ $user->name }}</a></li>
                         @else
-                           <li><a href="/holiday/create" data-tog="tooltip" title="create holiday">Create holiday for testing</a></li>
                            <li><a href="/" data-tog="tooltip" title="log in">Log in</a></li>
                            <li><a href="/register" data-tog="tooltip" title="register">register</a></li>
                         @endif
@@ -59,12 +57,23 @@
                </nav>
             </div>
          </div>
+         <div class="row">
+            <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-2 col-lg-8" >
 
+                @if(count($errors) > 0)
+                  <ul class='errors'>
+                     @foreach ($errors->all() as $error)
+                         <li><span class='fa fa-exclamation-circle'></span> {{ $error }}</li>
+                     @endforeach
+                  </ul>
+               @endif
 
                {{-- Main page content will be yielded here --}}
                @yield('content')
+               </div>
+            </div>
+         </div>
 
-      </div>
 
 
       <footer class="text-center">

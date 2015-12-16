@@ -21,6 +21,15 @@ class HolidayController extends Controller
 
    public function postCreate(Request $request)
    {
+      $this->validate(
+            $request,
+            [
+                'name' => 'required|min:5|max:256',
+                'description' => 'required|min:5|max:256',
+                'due_date'=>'required|date',
+            ]
+        );
+
       $holiday = new \App\Holiday();//create a new holiday object
       $logged_in_user = \Auth::user();//get the current user that is authenticated
 
@@ -58,15 +67,17 @@ class HolidayController extends Controller
 
       $holiday_mod->delete();
 
+      $holidays = \App\Holiday::where('user_id', '=', $logged_in_user->id)->get();
 
-      return view('holidays.deleted')->with('holiday', $holiday_mod);
+      return view('holidays.create')
+                        ->with('holidays', $holidays->toArray());
    }
 
 
 
-    public function postUpdateForm(Request $request)
+    public function getUpdateForm($id)
     {
-      $holiday = \App\Holiday::find($request->holiday_id);
+      $holiday = \App\Holiday::find($id);
 
       return view('holidays.update')->with('holiday', $holiday);
     }
@@ -75,6 +86,16 @@ class HolidayController extends Controller
 
    public function postUpdate(Request $request)
    {
+      $this->validate(
+            $request,
+            [
+                 'name' => 'required|min:5',
+                 'description' => 'required|min:5|max:256',
+                 'due_date'=>'required|date',
+            ]
+        );
+
+
             $holiday_to_update = \App\Holiday::where('id', '=', $request->id)
                ->update([
                'name'=>$request->name,

@@ -17,10 +17,6 @@
  * Login routes
  *******************************************************************/
 
-Route::get('/home', function() {
-    return 'home here fuck hey';
-});
-
 // Show login form
 Route::get('/', 'Auth\AuthController@getLogin');
 
@@ -35,8 +31,6 @@ Route::get('/register', 'Auth\AuthController@getRegister');
 
 //Process registration form
 Route::post('/register', 'Auth\AuthController@postRegister');
-
-
 
 
 
@@ -57,44 +51,36 @@ Route::group (['middleware' => 'auth'], function(){
    Route::post('/holiday/delete', 'HolidayController@postDelete');
 
    //sends the user to the update holiday form
-   Route::post('/holiday/update', 'HolidayController@postUpdateForm');
+   Route::get('/holiday/update/{id?}', 'HolidayController@getUpdateForm');
 
    //sends the changed data to the database
-   Route::post('/holiday/update/send', 'HolidayController@postUpdate');
+   Route::post('/holiday/update', 'HolidayController@postUpdate');
 
    /***************************************************************
       add escapes to the holidays
    ****************************************************************/
 
    //loads the form for adding an escape to a holiday
-   Route::post('/holiday/addescape', 'EscapeController@postAddEscape');
+   Route::get('/holiday/addescape/{id?}', 'EscapeController@getAddEscape');
 
    //creates a new escape and adds it to a holiday
    Route::post('/escape/create', 'EscapeController@postCreate');
-
 
 /*****************************************************************
  *Routes for working with escapes
  *
  *****************************************************************/
 
-   //
+   //loads the form to update an escape
    Route::get('/escape/update/{id?}', 'EscapeController@getUpdate');
 
+   //updates an escape in the db
    Route::post('/escape/update', 'EscapeController@postUpdate');
 
+   //deletes and escape
    Route::post('/escape/delete', 'EscapeController@postDelete');
 
-
 });
-
-
-
-
-
-
-
-
 
 
 

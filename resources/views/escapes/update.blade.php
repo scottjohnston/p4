@@ -18,7 +18,7 @@
          @if(isset($escape))
 
             {!! Form::open( array ('url' => "/escape/update", 'method' => 'POST')) !!}
-            {!! Form::text('id', $escape[0]['id']) !!}
+            {!! Form::hidden('id', $escape[0]['id']) !!}
 
             <br>
                {!! Form::label('name', $escape[0]['name']) !!}

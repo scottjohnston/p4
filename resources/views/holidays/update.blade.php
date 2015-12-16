@@ -18,8 +18,8 @@
 
          @if(isset($holiday))
 
-            {!! Form::open( array ('url' => "/holiday/update/send", 'method' => 'POST')) !!}
-            {!! Form::text('id', $holiday['id']) !!}
+            {!! Form::open( array ('url' => "/holiday/update", 'method' => 'POST')) !!}
+            {!! Form::hidden('id', $holiday['id']) !!}
 
             <br>
                {!! Form::label('name', $holiday['name']) !!}
@@ -29,7 +29,10 @@
                {!! Form::label('description', $holiday['description']) !!}
 
                {!! Form::text('description', $holiday['description'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
+            <br>
+               {!! Form::label('due_date', 'Date Due') !!}
 
+               {!! Form::date('due_date', '18/12/15', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
 
             <br>
                {!! Form::submit('Update holiday', $attributes = array ('class' => 'btn btn-primary')) !!}

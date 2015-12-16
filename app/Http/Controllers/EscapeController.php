@@ -13,12 +13,11 @@ class EscapeController extends Controller
    /*
    *
    *
-   *
    */
-    public function postAddEscape(Request $request)
+    public function getAddEscape($id)
     {
         $holidayToUpdate = \App\Holiday::with('escapes')
-                           ->where('id', '=', $request->id)->get();
+                           ->where('id', '=', $id)->get();
 
         return view('escapes.create')
                ->with('holidayToUpdate', $holidayToUpdate);
@@ -27,6 +26,17 @@ class EscapeController extends Controller
 
     public function postCreate(Request $request)
     {
+
+      $this->validate(
+            $request,
+            [
+                 'name' => 'required|min:5',
+                 'description' => 'required|min:5|max:256',
+                 'url' => 'required|url',
+                 'cost'=>'required|numeric',
+            ]
+        );
+
        $holiday = \App\Holiday::find($request->id);//->toArray();//::where('id', '=', $request->holiday_id)->get();
 
       //create a new escape in the database
@@ -56,10 +66,6 @@ class EscapeController extends Controller
 
 
 
-
-
-
-
     public function getUpdate($id)
     {
       $escape = \App\Escape::where('id', '=', $id)->get();
@@ -67,10 +73,25 @@ class EscapeController extends Controller
       return view('escapes.update')->with('escape', $escape->toArray());
     }
 
-
+    /* postUpdate sends the form data to the data base
+    *
+    *
+    */
 
     public function postUpdate(Request $request)
     {
+         $this->validate(
+               $request,
+               [
+                    'name' => 'required|min:5',
+                    'description' => 'required|min:5|max:256',
+                    'url' => 'required|url',
+                    'cost'=>'required|numeric',
+               ]
+           );
+
+              dump($request->url);
+
       $escape = new \App\Escape();
       $escape = \App\Escape::where('id', '=', $request->id)
          ->update([

@@ -15,13 +15,13 @@
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
                   <h3>Create a New holiday</h3>
 
-
                   {!! Form::open( array ('url' => '/holiday/create', 'method' => 'POST')) !!}
 
                   {!! Form::label('name', 'holidays Name') !!}
                   {!! Form::hidden('user_id', $user->id ) !!}
 
-                  {!! Form::text('name', 'holidays Name', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
+                  {!! Form::text('name', 'holidays Name', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}<br>
+
                </div>
             </div>
 
@@ -47,7 +47,7 @@
             <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
 
-                  {!! Form::label('due_date', 'Cost') !!}
+                  {!! Form::label('due_date', 'Date Due') !!}
 
                   {!! Form::date('due_date', '18/12/15', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
                </div>
@@ -69,10 +69,11 @@
                   <h4>List of holidays here </h4>
 
                      @if(isset($holidays))
+
                          @foreach($holidays as $holiday)
 
                            <br>
-                           {!! Form::open( array ('url' => "/holiday/update", 'method' => 'POST')) !!}
+                           {!! Form::open( array ('url' => "/holiday/update/{$holiday['id']}", 'method' => 'get')) !!}
 
                            {!! Form::hidden('holiday_id', $holiday['id']) !!}
                            {{ $holiday['name'] }}  {{ $holiday['id'] }}
@@ -84,7 +85,7 @@
                            {!! Form::submit('Delete holiday', $attributes = array ('class' => 'btn btn-primary')) !!}
                            {!! Form::close() !!}
                            <br>
-                           {!! Form::open( array ('url' => "/holiday/addescape", 'method' => 'POST')) !!}
+                           {!! Form::open( array ('url' => "/holiday/addescape/{$holiday['id']}", 'method' => 'get')) !!}
                            {!! Form::hidden('id', $holiday['id']) !!}
                            {!! Form::submit('Add Escapes', $attributes = array ('class' => 'btn btn-primary')) !!}
                            {!! Form::close() !!}

@@ -27,51 +27,25 @@
                   {!! Form::label('name', 'User Name') !!}
 
                   {!! Form::text('name', old('name'), $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '46', 'placeholder' => 'username')) !!}
-               </div>
-            </div>
-
-            <div class="row">
-               <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
 
                   {!! Form::label('email', 'email') !!}
 
                   {!! Form::text('email', old('email'), $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '60', 'placeholder' => 'email')) !!}
-               </div>
-            </div>
-
-
-
-            <div class="row">
-               <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
 
                   {!! Form::label('password', 'Password') !!}
 
                   {!! Form::password('password', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '60', 'placeholder' => 'Password') ) !!}
-               </div>
-            </div>
 
-            <div class="row">
-               <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
+                  {!! Form::label('remember', 'Remember me') !!}<br>
 
-                  {!! Form::label('remember', 'Remember me') !!}
+                  {!! Form::checkbox('remember' ) !!}<br>
 
-                  {!! Form::checkbox('remember' ) !!}
-               </div>
-            </div>
+                  {!! Form::submit('Login', $attributes = array ('class' => 'btn btn-primary')) !!}<br>
 
-            <br>
-            <div class="row">
-               <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
-                  {!! Form::submit('Login', $attributes = array ('class' => 'btn btn-primary')) !!}
-
-                  {!! Form::close() !!}
-               </div>
-            </div>
-
-            <div class="row">
-               <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
-                  <h3>Register</h3>
-                  <a href="/register" data-tog="tooltip" title="Register">Register</a>
+                  <p>
+                     New users please sign up here
+                  </p>
+                  <a href="/register" data-tog="tooltip" title="Register"><h3>Register</h3></a>
                </div>
             </div>
 
