@@ -12,7 +12,7 @@
 @section ('content')
 
 <div class="row">
-   <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
+   <div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12" >
       <h4>Escape to Update</h4>
 
          @if(isset($escape))
@@ -21,16 +21,16 @@
             {!! Form::hidden('id', $escape[0]['id']) !!}
 
             <br>
-               {!! Form::label('name', $escape[0]['name']) !!}
+               {!! Form::label('name', 'Name') !!}
 
                {!! Form::text('name', $escape[0]['name'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
             <br>
-               {!! Form::label('description', $escape[0]['description']) !!}
+               {!! Form::label('description', 'Description') !!}
 
                {!! Form::text('description', $escape[0]['description'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
 
             <br>
-               {!! Form::label('url', $escape[0]['url']) !!}
+               {!! Form::label('url', 'add a URL') !!}
 
                {!! Form::text('url', $escape[0]['url'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
             <br>
@@ -45,7 +45,7 @@
 
 
          @endif
-         {!! isset($request) ? dump($request) : 'omg should be here' !!}
+
    </div>
 </div>
 

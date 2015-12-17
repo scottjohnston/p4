@@ -19,6 +19,9 @@ class HolidayController extends Controller
       $logged_in_user = \Auth::user();//get the current user that is authenticated
       $holidays = \App\Holiday::where('user_id', '=', $logged_in_user->id)->get();//find their hollidays
 
+      //sort the collection so that the latest holiday is at the top
+      $holidays = $holidays->sortByDesc('id');
+      
       return view('holidays.create')->with('holidays', $holidays);
    }
 
@@ -55,6 +58,9 @@ class HolidayController extends Controller
 
       //return to the create view with all the holidays for that user
       $holidays = \App\Holiday::where('user_id', '=', $logged_in_user->id)->get();
+
+      //sort the collection so that the latest holiday is at the top
+      $holidays = $holidays->sortByDesc('id');
 
       return view('holidays.create')
                ->with('holidays', $holidays->toArray());
@@ -106,19 +112,10 @@ class HolidayController extends Controller
    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+   /*  getUpdateForm accepts id as a paramater and finds the
+   *   holiday from the db returning the object with holiday.update
+   *   which loads the form for the update proces
+   */
     public function getUpdateForm($id)
     {
       $holiday = \App\Holiday::find($id);
@@ -126,7 +123,10 @@ class HolidayController extends Controller
       return view('holidays.update')->with('holiday', $holiday);
     }
 
-
+    /*   postUpdate validates the request variable data from the
+    *    update holiday form and updates the fields in the holidays
+    *    table of the database
+    */
 
    public function postUpdate(Request $request)
    {
@@ -139,14 +139,15 @@ class HolidayController extends Controller
             ]
         );
 
+     //gets the holiday to be udated and loads the request data to the DB
+      $holiday_to_update = \App\Holiday::where('id', '=', $request->id)
+         ->update([
+         'name'=>$request->name,
+         'description'=>$request->description,
+         ]);
 
-            $holiday_to_update = \App\Holiday::where('id', '=', $request->id)
-               ->update([
-               'name'=>$request->name,
-               'description'=>$request->description,
-               ]);
-
-            $holiday = \App\Holiday::find($request->id);
+      //retrives the updated data from the db for display
+      $holiday = \App\Holiday::find($request->id);
 
       return view('holidays.update')
                ->with('holiday', $holiday);

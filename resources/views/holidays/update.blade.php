@@ -1,6 +1,5 @@
 @extends('layouts.master')
-{{-- welcome blade --}}
-
+{{-- holidays.update.blade --}}
 
 {{-- 'Project 4 Scott Johnston dwa15-' --}}
 
@@ -12,8 +11,8 @@
 @section ('content')
 
 <div class="row">
-   <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
-      <h4>holiday to Update</h4>
+   <div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12" >
+      <h4>Update holiday</h4>
 
 
          @if(isset($holiday))
@@ -32,7 +31,7 @@
             <br>
                {!! Form::label('due_date', 'Date Due') !!}
 
-               {!! Form::date('due_date', '18/12/15', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
+               {!! Form::date('due_date', $holiday['due_date'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
 
             <br>
                {!! Form::submit('Update holiday', $attributes = array ('class' => 'btn btn-primary')) !!}
@@ -40,10 +39,8 @@
                {!! Form::close() !!}
             <br>
 
-
          @endif
 
-{!! isset($holiday1) ? dump($holiday1) : 'omg where did it go should be here' !!}
    </div>
 </div>
 

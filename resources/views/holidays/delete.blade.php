@@ -5,31 +5,46 @@
 {{-- 'Project 4 Scott Johnston dwa15-' --}}
 
 @section('title')
-   Deleted hollidays
+   Delete holiday
 @stop
 
 
 @section ('content')
-         {!! isset($holiday) ? dump($holiday) : 'omg should be here' !!}<br>right here<br>
 
                   @if(isset($holiday))
-                  holiday is set
+
                      @foreach($holiday as $hol)
-                           {{ $hol->name }}<br>
-                           {{ $hol->id }}<br>
+                     <div class="row">
+                        <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" >
+
+                              Do you really want to delete
+                           <br>
+                           <h4>{{ $hol->name }}</h4>
+                           <div class="panel panel-default">
+                              {{ $hol->description }}
+                           </div>
+                              <h5>Date due </h5>
+                              <div class="panel panel-default">
+                                 {{ $hol->due_date }}
+                              </div>
+                              {!! Form::open( array ('url' => "/holiday/delete", 'method' => 'POST')) !!}
+                              {!! Form::hidden('id', $hol->id) !!}
+                              {!! Form::submit('Delete holiday', $attributes = array ('class' => 'btn btn-primary')) !!}
+                              {!! Form::close() !!}
+                              <h4>The following escapes will be deleted with it</h4>
+                        </div>
+                     </div>
+
                         @foreach($hol->escapes as $esc)
-                           {{ $esc->name}}<br>
+                           <div class="row">
+                              <div class="panel panel-default col-md-12 col-xs-12 col-sm-12 col-lg-12" >
+                                 {{ $esc->name}}<br>
+                                 {{ $esc->description}}<br>
+                              </div>
+                           </div>
                         @endforeach
                      @endforeach
                   @endif
 
-   @if(isset($holidaydfjsd))
-<br>
-{!! Form::open( array ('url' => "/holiday/delete", 'method' => 'POST')) !!}
-{{ $holiday['name'] }}  {{ $holiday['id'] }}
-{!! Form::hidden('id', $holiday['id']) !!}
-{!! Form::submit('Delete holiday', $attributes = array ('class' => 'btn btn-primary')) !!}
-{!! Form::close() !!}
-<br>
-   @endif
+
 @stop

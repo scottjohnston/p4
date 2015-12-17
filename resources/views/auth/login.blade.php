@@ -12,7 +12,7 @@
 @section ('content')
 
             <div class="row">
-               <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-4" >
+               <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-6" >
                   <h3>login here</h3>
                       @if(count($errors) > 0)
                         <ul class='errors'>
