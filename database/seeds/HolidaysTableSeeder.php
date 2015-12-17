@@ -18,7 +18,7 @@ class HolidaysTableSeeder extends Seeder
 
            'user_id' => $user_id,
 
-           'due_date' => 'I have no idea how to do this field',
+           'due_date' => '18/12/15',
            'name' => 'holiday in Sydney',
            'description' => 'travel to the other side of the world bring bring a towel there are lots of beaches',
         ]);

@@ -10,9 +10,10 @@ use App\Http\Controllers\Controller;
 class EscapeController extends Controller
 {
 
-   /*
-    *
-    *
+   /*  getAddEscape loads a form to add escapes to
+    *  the selected holiday. It accepts one paramater
+    *  the holiday id and loads the holiday with its
+    *  escapes
     */
     public function getAddEscape($id)
     {
@@ -24,6 +25,10 @@ class EscapeController extends Controller
     }
 
 
+    /* postCreate validates the request variable sent from the
+    *  create escape form and creates the new escape
+    *
+    */
     public function postCreate(Request $request)
     {
 
@@ -37,7 +42,7 @@ class EscapeController extends Controller
             ]
         );
 
-       $holiday = \App\Holiday::find($request->id);//->toArray();//::where('id', '=', $request->holiday_id)->get();
+       $holiday = \App\Holiday::find($request->id);//fids the holiday that the escape will belong to
 
       //create a new escape in the database
       $escape = new \App\Escape();
@@ -46,26 +51,26 @@ class EscapeController extends Controller
       $escape->url = $request->url;
       $escape->cost = $request->cost;
 
-      $escape->save();
+      $escape->save();//save the escape
 
-      $escapes = \App\Escape::where('id', '=', $request->holiday_id);//at first glance this works
+      //get the existing escapes that belong to that holiday
+      $escapes = \App\Escape::where('id', '=', $request->holiday_id);
 
-      $escape->holidays()->sync([$request->holiday_id]);//this is the go
-      //$holiday->escapes()->sync(['16']);
-      //$all_escapes = \App\Escape::where('id', '=', '1')->get();//where('holiday_id', '=', '10');
-      //return back()->with('request_id', $request->holiday_id);//this works ->pluck('id')
-                                    //->with('holiday', $all_escapes);
+      //sync all the escapes that belong to that holiday to the holdiay_escape table
+      $escape->holidays()->sync([$request->holiday_id]);
 
+      //load the holiday with its escapes and return them to the the create escapes page
       $holidayToUpdate = \App\Holiday::with('escapes')
                          ->where('id', '=', $request->holiday_id)->get();
 
       return view('escapes.create')
-             ->with('holidayToUpdate', $holidayToUpdate)
-             ->with('request', $request);
+             ->with('holidayToUpdate', $holidayToUpdate);
     }
 
 
-
+    /*  getUpdate loads the escape that is passed to the function
+    *   as a paramater it then returns escapes.update with the data
+    */
     public function getUpdate($id)
     {
       $escape = \App\Escape::where('id', '=', $id)->get();
@@ -73,9 +78,11 @@ class EscapeController extends Controller
       return view('escapes.update')->with('escape', $escape->toArray());
     }
 
-    /* postUpdate sends the form data to the data base
-    *
-    *
+
+    /* postUpdate validates the request variable it then
+    *  gets the escape to be updated and saves the new
+    *  to the DB. it returns to escapes.update with the changed
+    *  escape
     */
 
     public function postUpdate(Request $request)
@@ -90,9 +97,9 @@ class EscapeController extends Controller
                ]
            );
 
-              dump($request->url);
-
+      //create a new escape
       $escape = new \App\Escape();
+      //load the new escape with the escape to be updated and save it to the db
       $escape = \App\Escape::where('id', '=', $request->id)
          ->update([
          'name'=>$request->name,
@@ -101,40 +108,53 @@ class EscapeController extends Controller
          'cost'=>$request->cost
          ]);
 
+      //get the escape from the database and return it to escapes.update
       $escapes = \App\Escape::where('id', '=', $request->id)->get();
 
       return view('escapes.update')->with('escape', $escapes);
     }
 
 
-    /****************************************
-      Delete escape
-      ***************************************/
-
-
+    /* postDeleteForm gets the holiday_id, and the escape_id form
+    *  the request variable that is passed to it as a paramater
+    *  It then loads the data into the delete form for deletion
+    */
 
     public function postDeleteForm(Request $request)
     {
-      $holiday_id = $request->holiday_id;
+      $holiday_id = $request->holiday_id;//get the holiday_id
+
+      //get the escape from the db
       $escape = \App\Escape::where('id', '=', $request->id)->get();
 
+      //return to the escape page for final deletion
       return view('escapes.delete')
                   ->with('escape', $escape)
                   ->with('holiday_id', $holiday_id);
     }
 
 
-
+    /*  postDelete deletes the escape that is
+    *   passed to it in the request variable
+    *   and returns to the escapes.create and loads
+    *   the remaining escapes that belong to that holiday
+    */
 
     public function postDelete(Request $request)
     {
+      //gets the holiday that the escape belongs to
       $holiday = \App\Holiday::find($request->holiday_id);
-      //$escapes = new \App\Escape();
+
+      //loads the escape to be delete
       $escapeToDelete = \App\Escape::find($request->id);
 
+      //detaches the escape from the holiday
       $holiday->escapes()->detach($request->id);
+
+      //deletes the escape
       $escapeToDelete->delete();
 
+      //load the holiday with its escapes
       $holidayWithEscapes = \App\Holiday::with('escapes')
                           ->where('id', '=', $request->holiday_id)->get();
 

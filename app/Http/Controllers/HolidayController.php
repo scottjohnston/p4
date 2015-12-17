@@ -67,11 +67,11 @@ class HolidayController extends Controller
    */
     public function getDeleteForm($id)
     {
+      //get the holiday with its escapes
       $holiday = \App\Holiday::with('escapes')
                          ->where('id', '=', $id)->get();
 
-      //dump($holiday);
-
+      //return to holiday.delete with the holiday and its escapes
       return view('holidays.delete')->with('holiday', $holiday);
     }
 
