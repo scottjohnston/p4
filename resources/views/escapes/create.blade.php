@@ -23,9 +23,9 @@
                         @foreach($hol->escapes as $esc)
                            {{ $esc->name}}<br>
                         @endforeach
-
-
                      @endforeach
+
+                     
                   @endif
 
                </div>
@@ -101,7 +101,7 @@
                               {!! Form::submit('Update Escape', $attributes = array ('class' => 'btn btn-primary')) !!}
                               {!! Form::close() !!}
                               <br>
-                              {!! Form::open( array ('url' => "/escape/delete", 'method' => 'POST')) !!}
+                              {!! Form::open( array ('url' => "/escape/delete/form", 'method' => 'POST')) !!}
                               {!! Form::hidden('holiday_id', $hol->id ) !!}
                               {!! Form::hidden('id', $escape['id']) !!}
                               {!! Form::submit('Delete Escape', $attributes = array ('class' => 'btn btn-primary')) !!}

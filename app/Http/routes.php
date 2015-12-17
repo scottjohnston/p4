@@ -47,6 +47,10 @@ Route::group (['middleware' => 'auth'], function(){
    //send data for a new holiday to be created in the database
    Route::post('/holiday/create', 'HolidayController@postCreate');
 
+
+/************************************************************************************************/
+   Route::get('/holiday/delete/{id?}', 'HolidayController@getDeleteForm');
+
    //deletes a holiday and its escapes from the database
    Route::post('/holiday/delete', 'HolidayController@postDelete');
 
@@ -76,6 +80,11 @@ Route::group (['middleware' => 'auth'], function(){
 
    //updates an escape in the db
    Route::post('/escape/update', 'EscapeController@postUpdate');
+
+
+
+
+   Route::post('escape/delete/form', 'EscapeController@postDeleteForm');
 
    //deletes and escape
    Route::post('/escape/delete', 'EscapeController@postDelete');

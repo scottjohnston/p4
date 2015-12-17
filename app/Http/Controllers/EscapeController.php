@@ -11,9 +11,9 @@ class EscapeController extends Controller
 {
 
    /*
-   *
-   *
-   */
+    *
+    *
+    */
     public function getAddEscape($id)
     {
         $holidayToUpdate = \App\Holiday::with('escapes')
@@ -110,6 +110,21 @@ class EscapeController extends Controller
     /****************************************
       Delete escape
       ***************************************/
+
+
+
+    public function postDeleteForm(Request $request)
+    {
+      $holiday_id = $request->holiday_id;
+      $escape = \App\Escape::where('id', '=', $request->id)->get();
+
+      return view('escapes.delete')
+                  ->with('escape', $escape)
+                  ->with('holiday_id', $holiday_id);
+    }
+
+
+
 
     public function postDelete(Request $request)
     {

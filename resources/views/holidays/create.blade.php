@@ -80,7 +80,7 @@
                            {!! Form::submit('Update holiday', $attributes = array ('class' => 'btn btn-primary')) !!}
                            {!! Form::close() !!}
                            <br>
-                           {!! Form::open( array ('url' => "/holiday/delete", 'method' => 'POST')) !!}
+                           {!! Form::open( array ('url' => "/holiday/delete/{$holiday['id']}", 'method' => 'GET')) !!}
                            {!! Form::hidden('id', $holiday['id']) !!}
                            {!! Form::submit('Delete holiday', $attributes = array ('class' => 'btn btn-primary')) !!}
                            {!! Form::close() !!}
