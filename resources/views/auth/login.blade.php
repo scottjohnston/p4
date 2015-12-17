@@ -13,9 +13,9 @@
 
             <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-2 col-lg-8" >
-                  <h4>Holdiay escapes how to</h4>
+                  <h4>Holiday escapes how to</h4>
                   <p>
-                     Holdiay escapes is designed to help you get the most out of your holidays. Create a holiday and then address
+                     Holiday escapes is designed to help you get the most out of your holidays. Create a holiday
                      then add all the escapes you will go on when you get there. Include all the steps that you need to do before
                      heading off.
                   </p>
@@ -56,7 +56,7 @@
                   {!! Form::submit('Login', $attributes = array ('class' => 'btn btn-primary')) !!}<br>
 
                   <p>
-                     New users please regiser here
+                     New users please register here
                   </p>
                   <a href="/register" data-tog="tooltip" title="Register"><h3>Register</h3></a>
                </div>
