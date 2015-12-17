@@ -12,6 +12,19 @@
 @section ('content')
 
             <div class="row">
+               <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-2 col-lg-8" >
+                  <h4>Holdiay escapes how to</h4>
+                  <p>
+                     Holdiay escapes is designed to help you get the most out of your holidays. Create a holiday and then address
+                     then add all the escapes you will go on when you get there. Include all the steps that you need to do before
+                     heading off.
+                  </p>
+                  <p>
+                     Login below or go to the register page to create a new profile
+                  </p>
+            </div>
+         </div>
+            <div class="row">
                <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-4 col-lg-6" >
                   <h3>login here</h3>
                       @if(count($errors) > 0)
@@ -43,7 +56,7 @@
                   {!! Form::submit('Login', $attributes = array ('class' => 'btn btn-primary')) !!}<br>
 
                   <p>
-                     New users please sign up here
+                     New users please regiser here
                   </p>
                   <a href="/register" data-tog="tooltip" title="Register"><h3>Register</h3></a>
                </div>

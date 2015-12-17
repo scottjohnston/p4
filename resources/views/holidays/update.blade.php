@@ -14,7 +14,8 @@
    <div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12" >
       <h4>Update holiday</h4>
 
-
+   </div>
+</div>
          @if(isset($holiday))
 
             {!! Form::open( array ('url' => "/holiday/update", 'method' => 'POST')) !!}
@@ -40,7 +41,6 @@
             <br>
 
          @endif
-
    </div>
 </div>
 
