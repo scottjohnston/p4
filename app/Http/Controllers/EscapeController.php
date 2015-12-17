@@ -11,7 +11,7 @@ class EscapeController extends Controller
 {
 
    /*  getAddEscape loads a form to add escapes to
-    *  the selected holiday. It accepts one paramater
+    *  the selected holiday. It accepts one parameter
     *  the holiday id and loads the holiday with its
     *  escapes
     */
@@ -42,7 +42,7 @@ class EscapeController extends Controller
             ]
         );
 
-       $holiday = \App\Holiday::find($request->id);//fids the holiday that the escape will belong to
+       $holiday = \App\Holiday::find($request->id);//finds the holiday that the escape will belong to
 
       //create a new escape in the database
       $escape = new \App\Escape();
@@ -116,7 +116,7 @@ class EscapeController extends Controller
 
 
     /* postDeleteForm gets the holiday_id, and the escape_id form
-    *  the request variable that is passed to it as a paramater
+    *  the request variable that is passed to it as a parameter
     *  It then loads the data into the delete form for deletion
     */
 

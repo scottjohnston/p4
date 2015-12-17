@@ -15,9 +15,9 @@
                <div class="panel panel-default col-md-12 col-xs-12 col-sm-12 col-lg-12" >
                   <h3>Create a New holiday</h3>
                   <p>
-                     Manage all of your holidays from this page. Create new holidays by entering the name, description and a Url
-                     that is representitive of where you are going. The add escapes by clicking the add escape button in your list of
-                     holidays below. When you are finished with a holiday click the delete button and the holliday with its escapes will
+                     Manage all of your holidays from this page. Create new holidays by entering the name, description and an Url
+                     that is representative of where you are going. The add escapes by clicking the add escape button in your list of
+                     holidays below. When you are finished with a holiday click the delete button and the holiday with its escapes will
                      be removed.
                   </p>
                   <p>

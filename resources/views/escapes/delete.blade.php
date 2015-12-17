@@ -14,8 +14,9 @@
          @if(isset($escape))
             <div class="row">
                <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" >
-                  Do you really want to delete
-               <br>
+                <p>
+                  Do you really want to delete this holiday? Deletion is final.
+               </p>
                   <h4>{{ $escape[0]['name'] }}</h4>
                <div class="panel panel-default">
                   {{ $escape[0]['description'] }}

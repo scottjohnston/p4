@@ -10,23 +10,27 @@
 
 @section ('content')
 
-<div class="row">
-   <div class="form-group col-md-12 col-xs-12 col-sm-12 col-lg-12" >
-      <h4>Update holiday</h4>
-
+   <div class="row">
+      <div class=" panel panel-default  col-md-12 col-xs-12 col-sm-12 col-lg-12" >
+         <h4>Update holiday</h4>
+         <p>
+            Change the data in the form and click update Holiday.
+         </p>
+      </div>
    </div>
-</div>
+      <div class="row">
+         <div class="form-group panel panel-default  col-md-12 col-xs-12 col-sm-12 col-lg-12" >
          @if(isset($holiday))
 
             {!! Form::open( array ('url' => "/holiday/update", 'method' => 'POST')) !!}
             {!! Form::hidden('id', $holiday['id']) !!}
 
-            <br>
-               {!! Form::label('name', $holiday['name']) !!}
+
+               {!! Form::label('name', $holiday['name']) !!} Must be more than 5 characters long and no more than 256
 
                {!! Form::text('name', $holiday['name'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
             <br>
-               {!! Form::label('description', $holiday['description']) !!}
+               {!! Form::label('description', $holiday['description']) !!} Must be more than 5 characters long and no more than 256
 
                {!! Form::text('description', $holiday['description'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
             <br>

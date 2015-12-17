@@ -12,8 +12,11 @@
 @section ('content')
             <div class="row">
                <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" >
-
                   <h3>Add escapes to this holiday</h3>
+                  <p>
+                     Enter the data for your escape in the form bellow and click create escape to add
+                     an escape to your holiday. Add as manny escapes as you need too.
+                  </p>
                   @if(isset($holidayToUpdate))
 
                      @foreach($holidayToUpdate as $hol)
@@ -35,15 +38,15 @@
 
                      {!! Form::hidden('holiday_id', $hol->id ) !!}
 
-                     {!! Form::label('name', '') !!}
+                     {!! Form::label('name', '') !!} Must be more than 5 characters long and no more than 256
 
                      {!! Form::text('name', '', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
 
-                     {!! Form::label('description', 'description') !!}
+                     {!! Form::label('description', 'description') !!} Must be more than 5 characters long and no more than 256
 
                      {!! Form::text('description','', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
 
-                     {!! Form::label('url', 'add a URL') !!}
+                     {!! Form::label('url', 'add a URL') !!} must be a valid url
 
                      {!! Form::text('url','', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
 

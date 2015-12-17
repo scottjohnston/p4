@@ -17,7 +17,7 @@ class HolidayController extends Controller
    public function getCreate()
    {
       $logged_in_user = \Auth::user();//get the current user that is authenticated
-      $holidays = \App\Holiday::where('user_id', '=', $logged_in_user->id)->get();//find their hollidays
+      $holidays = \App\Holiday::where('user_id', '=', $logged_in_user->id)->get();//find their holidays
 
       //sort the collection so that the latest holiday is at the top
       $holidays = $holidays->sortByDesc('id');
@@ -68,7 +68,7 @@ class HolidayController extends Controller
 
 
    /*  getDeleteForm accepts the id of the holiday to be deleted as
-   *   a paramater and loads the holiday into the delete form
+   *   a parameter and loads the holiday into the delete form
    *
    */
     public function getDeleteForm($id)
@@ -83,13 +83,13 @@ class HolidayController extends Controller
 
 
    /*  postDelete accepts the id of a holiday from the request variable
-   *   and deletes the holiday first syncing the privot table and then
+   *   and deletes the holiday first syncing the pivot table and then
    *   removing its escapes from the database
    *   it then returns the user to the create holiday page
    */
    public function postDelete(Request $request)
    {
-      $logged_in_user = \Auth::user();//find the user that is loged in
+      $logged_in_user = \Auth::user();//find the user that is logged in
 
       $holiday_mod = \App\Holiday::find($request->id);//get the holiday from the DB
 
@@ -112,9 +112,9 @@ class HolidayController extends Controller
    }
 
 
-   /*  getUpdateForm accepts id as a paramater and finds the
+   /*  getUpdateForm accepts id as a parameter and finds the
    *   holiday from the db returning the object with holiday.update
-   *   which loads the form for the update proces
+   *   which loads the form for the update process
    */
     public function getUpdateForm($id)
     {
@@ -139,14 +139,14 @@ class HolidayController extends Controller
             ]
         );
 
-     //gets the holiday to be udated and loads the request data to the DB
+     //gets the holiday to be updated and loads the request data to the DB
       $holiday_to_update = \App\Holiday::where('id', '=', $request->id)
          ->update([
          'name'=>$request->name,
          'description'=>$request->description,
          ]);
 
-      //retrives the updated data from the db for display
+      //retrieves the updated data from the db for display
       $holiday = \App\Holiday::find($request->id);
 
       return view('holidays.update')
