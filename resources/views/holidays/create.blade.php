@@ -13,10 +13,10 @@
 
             <div class="row">
                <div class="panel panel-default col-md-12 col-xs-12 col-sm-12 col-lg-12" >
-                  <h3>Create a New holiday</h3>
+                  <h3>Create a New Holiday</h3>
                   <p>
                      Manage all of your holidays from this page. Create new holidays by entering the name, description and an Url
-                     that is representative of where you are going. The add escapes by clicking the add escape button in your list of
+                     that is representative of where you are going. Then add escapes by clicking the add escape button in your list of
                      holidays below. When you are finished with a holiday click the delete button and the holiday with its escapes will
                      be removed.
                   </p>
@@ -50,7 +50,7 @@
 
                   {!! Form::close() !!}
 
-                  <h3>All of your holidays are Below </h3>
+                  <h3>All of your holidays are below </h3>
                </div>
             </div>
                      @if(isset($holidays))

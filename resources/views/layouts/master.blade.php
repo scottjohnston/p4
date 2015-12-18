@@ -23,7 +23,7 @@
       <div class="container" >
          <header class="jumbotron">
             {{-- 'title for the jumbotron' --}}
-            <h1>@yield('title','P4 this will change')<br><small>Scott Johnston</small></h1>
+            <h1>@yield('title','P4 Holiday Escapes')<br><small>Scott Johnston</small></h1>
          </header>
          {{-- 'Navigation for the site collapses for small devices' --}}
          <div class="row">

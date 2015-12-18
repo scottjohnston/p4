@@ -5,7 +5,7 @@
 {{-- 'Project 4 Scott Johnston dwa15-' --}}
 
 @section('title')
-    Creaete escapes and add them to Holidays
+    Create escapes and add them to Holidays
 @stop
 
 
@@ -14,8 +14,8 @@
                <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" >
                   <h3>Add escapes to this holiday</h3>
                   <p>
-                     Enter the data for your escape in the form bellow and click create escape to add
-                     an escape to your holiday. Add as manny escapes as you need too.
+                     Enter the data for your escape in the form below and click create escape to add
+                     an escape to your holiday. Add as many escapes as you need too.
                   </p>
                   @if(isset($holidayToUpdate))
 
@@ -46,7 +46,7 @@
 
                      {!! Form::text('description','', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
 
-                     {!! Form::label('url', 'add a URL') !!} must be a valid url
+                     {!! Form::label('url', 'add an URL') !!} must be a valid url
 
                      {!! Form::text('url','', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
 
@@ -72,7 +72,8 @@
                      {!! Form::open( array ('url' => "/escape/update/{$escape['id']}", 'method' => 'GET')) !!}
                      {!! Form::hidden('id', $escape['id']) !!}
                      <h4>{{ $escape['name'] }}</h4>
-                     {{ $escape['url'] }}
+                     <a href="{{$escape['url']}}">{{$escape['url']}}</a>
+
                      <br>
                      {{ $escape['cost'] }}
                      <br>
