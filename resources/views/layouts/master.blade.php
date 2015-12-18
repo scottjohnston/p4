@@ -57,8 +57,7 @@
                </nav>
             </div>
          </div>
-         <div class="row">
-            <div class="form-group col-md-8 col-md-offset-2 col-xs-12 col-sm-8 coll-sm-offset-2 col-lg-offset-2 col-lg-8" >
+
 
                 @if(count($errors) > 0)
                   <ul class='errors'>
@@ -70,12 +69,10 @@
 
                {{-- Main page content will be yielded here --}}
                @yield('content')
-               </div>
-            </div>
+
+
+
          </div>
-
-
-
       <footer class="text-center">
          <a href="http://dwa15.com/" data-tog="tooltip" title="Course web site">dwa 15</a>
          <a href="http://p1.scottvjohnston.me/" data-tog="tooltip" title="Project ">Project 1</a>
