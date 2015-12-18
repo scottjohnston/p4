@@ -159,7 +159,7 @@ class EscapeController extends Controller
                           ->where('id', '=', $request->holiday_id)->get();
 
       return redirect('holiday/create');
-      
+
    }
 
 
