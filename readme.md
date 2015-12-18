@@ -1,27 +1,55 @@
-## Laravel PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+##Holiday Escape
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Provides a holiday manager for a user to create holidays that contain a list
+of escapes. The escapes are things that the user might do while on holiday.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+The holidays are managed through the create holiday link where a list of the
+users holidays is generated.
 
-## Official Documentation
+From that list the user can, add escapes, delete a holiday or update a holiday.
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Add escapes takes the user to the create escape page where they are able too,
+add new escapes, delete escapes or update escapes
 
-## Contributing
+Delete a holiday takes the user to a warning page that lists the attached escapes
+and asks them if they really want to delete the holiday.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Update a holiday takes the user to a page where they can update the data in the
+selected holiday.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+###Packages used
 
-### License
+Laravel Collective to create the forms
+[Laravel Collective](http://laravelcollective.com/docs/5.1/html)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+###Site structure
+
+There are 2 main sections to the site they share the same program flow
+
+####Holidays and escapes
+
+Each has its own Controller and 3 blades, create update and Delete.
+Each blade looks after creation updating and deletion of either holidays or
+escapes
+
+There are 2 routes that allow the escapes to be grouped under the holidays
+
+###Database
+
+users table contains all of the user data and has a one to many relationship
+with holidays
+
+holidays contains the holidays and has a many to many relationship with escapes
+
+escape_holiday is a pivot table  between holidays and escapes
+
+escapes table contains all the escapes and has a many to many relationship with
+holidays
+
+
+
+[p4.scottvjohnston.me](http://p4.scottvjohnston.me/)
+
+[screen cast link is here](http://screencast.com/t/qOdtQD0sTiEW)

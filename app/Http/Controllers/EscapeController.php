@@ -158,8 +158,8 @@ class EscapeController extends Controller
       $holidayWithEscapes = \App\Holiday::with('escapes')
                           ->where('id', '=', $request->holiday_id)->get();
 
-      return view('escapes.create')
-             ->with('holidayToUpdate', $holidayWithEscapes);
+      return redirect('holiday/create');
+      
    }
 
 
