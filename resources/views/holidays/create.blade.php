@@ -31,10 +31,11 @@
 
                   {!! Form::open( array ('url' => '/holiday/create', 'method' => 'POST')) !!}
 
-                  {!! Form::label('name', 'Holidays Name') !!} Must be more than 5 characters long and no more than 256
                   {!! Form::hidden('user_id', $user->id ) !!}
+                  {!! Form::label('name', 'Holidays Name') !!} Must be more than 5 characters long and no more than 256
 
-                  {!! Form::text('name', '', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
+
+                  {!! Form::text('name', '', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => 256)) !!}
                   <br>
 
                   {!! Form::label('description', 'description') !!} Must be more than 5 characters long and no more than 256

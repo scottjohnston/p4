@@ -21,7 +21,7 @@ class HolidayController extends Controller
 
       //sort the collection so that the latest holiday is at the top
       $holidays = $holidays->sortByDesc('id');
-      
+
       return view('holidays.create')->with('holidays', $holidays);
    }
 
@@ -144,6 +144,7 @@ class HolidayController extends Controller
          ->update([
          'name'=>$request->name,
          'description'=>$request->description,
+         'due_date'=>$request->due_date,
          ]);
 
       //retrieves the updated data from the db for display

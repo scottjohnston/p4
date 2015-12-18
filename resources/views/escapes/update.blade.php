@@ -30,16 +30,16 @@
             <br>
                {!! Form::label('name', 'Name') !!} Must be more than 5 characters long and no more than 256
 
-               {!! Form::text('name', $escape[0]['name'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
+               {!! Form::text('name', $escape[0]['name'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => 256)) !!}
             <br>
                {!! Form::label('description', 'Description') !!} Must be more than 5 characters long and no more than 256
 
-               {!! Form::text('description', $escape[0]['description'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
+               {!! Form::text('description', $escape[0]['description'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => 256 ) ) !!}
 
             <br>
                {!! Form::label('url', 'add a URL') !!} Must be a valid url
 
-               {!! Form::text('url', $escape[0]['url'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
+               {!! Form::text('url', $escape[0]['url'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => 256 ) ) !!}
             <br>
                {!! Form::label('cost', 'Cost') !!}
 

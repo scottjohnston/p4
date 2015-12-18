@@ -28,15 +28,15 @@
 
                {!! Form::label('name', $holiday['name']) !!} Must be more than 5 characters long and no more than 256
 
-               {!! Form::text('name', $holiday['name'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
+               {!! Form::text('name', $holiday['name'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => 256)) !!}
             <br>
                {!! Form::label('description', $holiday['description']) !!} Must be more than 5 characters long and no more than 256
 
-               {!! Form::text('description', $holiday['description'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
+               {!! Form::text('description', $holiday['description'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => 256 ) ) !!}
             <br>
                {!! Form::label('due_date', 'Date Due') !!}
 
-               {!! Form::date('due_date', $holiday['due_date'], $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
+               {!! Form::date('due_date', $holiday['due_date'], $attributes = array ('class' => 'form-control scottsTextBox') ) !!}
 
             <br>
                {!! Form::submit('Update holiday', $attributes = array ('class' => 'btn btn-primary')) !!}

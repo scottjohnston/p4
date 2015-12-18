@@ -54,6 +54,7 @@
                   {!! Form::checkbox('remember' ) !!}<br>
 
                   {!! Form::submit('Login', $attributes = array ('class' => 'btn btn-primary')) !!}<br>
+                  {!! Form::close() !!}
 
                   <p>
                      New users please register here

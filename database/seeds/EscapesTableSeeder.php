@@ -42,7 +42,7 @@ class EscapesTableSeeder extends Seeder
         DB::table('escapes')->insert([
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Bondi Beach',
+            'name' => 'hartlies crocodile adventures',
             'description' => '2100 metres of timber boardwalks and pathways leading you on a journey of discovery through woodlands and rainforest where you can see an array of wildlife, including beautiful tropical birds, reptiles, insects and other native fauna',
             'url' => 'http://www.crocodileadventures.com/',
             'cost' => '500',

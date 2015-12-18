@@ -40,15 +40,15 @@
 
                      {!! Form::label('name', '') !!} Must be more than 5 characters long and no more than 256
 
-                     {!! Form::text('name', '', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256 ')) !!}
+                     {!! Form::text('name', '', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => 256)) !!}
 
                      {!! Form::label('description', 'description') !!} Must be more than 5 characters long and no more than 256
 
-                     {!! Form::text('description','', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
+                     {!! Form::text('description','', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => 256 ) ) !!}
 
                      {!! Form::label('url', 'add an URL') !!} must be a valid url
 
-                     {!! Form::text('url','', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
+                     {!! Form::text('url','', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => 256 ) ) !!}
 
                      {!! Form::label('cost', 'Cost') !!}
 
