@@ -52,7 +52,7 @@
 
                      {!! Form::label('cost', 'Cost') !!}
 
-                     {!! Form::number('cost','', $attributes = array ('class' => 'form-control scottsTextBox', 'maxlength' => '256' ) ) !!}
+                     {!! Form::number('cost','', $attributes = array ('class' => 'form-control scottsTextBox', 'min' => '1', 'max' => '100000' ) ) !!}
 
 
                      {!! Form::submit('Create new escapes', $attributes = array ('class' => 'btn btn-primary')) !!}
